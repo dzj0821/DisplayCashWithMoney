@@ -1,9 +1,9 @@
 # [Escape from Duckov Mod] Display Cash With Money
 
-**创意工坊页面**:  
+**Steam Workshop Link**:  
 https://steamcommunity.com/sharedfiles/filedetails/?id=3588488152
 
-## 简介
+## Introduction
 
 Who still doesn’t know that cash can be spent like money? The author of this Mod is the last one to find out.
 
