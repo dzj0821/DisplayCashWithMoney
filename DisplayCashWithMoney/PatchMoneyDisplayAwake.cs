@@ -19,6 +19,8 @@ namespace DisplayCashWithMoney
         {
             var text = (TextMeshProUGUI) typeof(MoneyDisplay).GetField("text", BindingFlags.NonPublic | BindingFlags.Instance).GetValue(__instance);
 
+            var index = text.transform.GetSiblingIndex();
+
             var item = ItemAssetsCollection.GetPrefab(ModBehaviour.CASH_ITEM_TYPE_ID);
 
             void CreateSpace()
@@ -26,12 +28,19 @@ namespace DisplayCashWithMoney
                 GameObject space = new GameObject("Space");
                 space.AddComponent<LayoutElement>().preferredWidth = 10;
                 space.transform.SetParent(text.transform.parent);
+                space.transform.SetSiblingIndex(index + 1);
             }
+
+            // 倒序插入
+            var cashText = UnityEngine.Object.Instantiate(text, text.transform.parent);
+            cashText.transform.SetSiblingIndex(index + 1);
+            cashText.gameObject.name = "CashText";
 
             CreateSpace();
 
             GameObject obj = new GameObject("CashIcon");
             obj.transform.SetParent(text.transform.parent);
+            obj.transform.SetSiblingIndex(index + 1);
             Image image = obj.AddComponent<Image>();
             image.sprite = item.Icon;
             LayoutElement layoutElement = obj.AddComponent<LayoutElement>();
@@ -40,8 +49,7 @@ namespace DisplayCashWithMoney
 
             CreateSpace();
 
-            var cashText = UnityEngine.Object.Instantiate(text, text.transform.parent);
-            cashText.gameObject.name = "CashText";
+            
         }
     }
 }
